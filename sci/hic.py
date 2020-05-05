@@ -5,8 +5,9 @@ from tqdm import tqdm
 
 
 class HicData:
-    def __init__(self, res, name):
+    def __init__(self, res, name, chr):
         self.res = res
+        self.chr = chr 
         self.contact_matrices = {}
         self.dExpected_counts = {}
         self.toKeep = {}
@@ -124,7 +125,7 @@ class HicData:
                     oF.write("%d\t%d\t%f\n" % (node1, node2, value))
                     oF.write("%d\t%d\t%f\n" % (node2, node1, value))
 
-    def write_GW_matrix(self, mat_file, cis=False):
+    def write_GW_matrix(self, mat_file, cis=True):
         rows = []
         for i in range(1, 23):
             chrom1 = "chr%d" % i
