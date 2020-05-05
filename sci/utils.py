@@ -36,9 +36,9 @@ def run_LINE(inFile, samples, mode):
     if mode == "both_combined":
         outFile = ('%s_order_3_samples_%dM.embedding'
                    % (inFile.split(".")[0], samples))
-        command = ("/home/kevindsouza/Documents/UBC/PhD/Research/nucleosome/graph_embed_hic/LINE/line -train %s "
-                   "-order 3 -samples %d -output %s"
-                   % (inFile, samples, outFile))
+        command = (
+                    "/home/kevindsouza/Documents/projects/graph_embed_hic/LINE/line -train %s -order 3 -samples %d -output %s"
+                    % (inFile, samples, outFile))
         tOutput = _LaunchJob(command)
         if tOutput[1] != '':
             sys.exit(tOutput[1])
@@ -48,8 +48,7 @@ def run_LINE(inFile, samples, mode):
         outFile = ("%s_order_%s_samples_%dM.embedding"
                    % (inFile.split(".")[0], mode, samples))
         command = (
-                    "/home/kevindsouza/Documents/UBC/PhD/Research/nucleosome/graph_embed_hic/LINE/line -train %s -order %s"
-                    "-samples %d -output %s"
+                    "/home/kevindsouza/Documents/projects/graph_embed_hic/LINE/line -train %s -order %s -samples %d -output %s"
                     % (inFile, mode, samples, outFile))
         tOutput = _LaunchJob(command)
         if tOutput[1] != '':
@@ -61,7 +60,7 @@ def run_LINE(inFile, samples, mode):
         outFile1 = ("%s_order_1_samples_%dM.embedding"
                     % (inFile.split(".")[0], samples))
         command = (
-                    "/home/kevindsouza/Documents/UBC/PhD/Research/nucleosome/graph_embed_hic/LINE/line -train %s -order 1 -samples %d -output %s"
+                    "/home/kevindsouza/Documents/projects/graph_embed_hic/LINE/line -train %s -order 1 -samples %d -output %s"
                     % (inFile, samples, outFile1))
         tOutput = _LaunchJob(command)
         if tOutput[1] != '':
@@ -69,7 +68,7 @@ def run_LINE(inFile, samples, mode):
         outFile2 = ("%s_order_2_samples_%dM.embedding"
                     % (inFile.split(".")[0], samples))
         command = (
-                    "/home/kevindsouza/Documents/UBC/PhD/Research/nucleosome/graph_embed_hic/LINE/line -train %s -order 2 -samples %d -output %s"
+                    "/home/kevindsouza/Documents/projects/graph_embed_hic/LINE/line -train %s -order 2 -samples %d -output %s"
                     % (inFile, samples, outFile2))
         _LaunchJob(command)
         if tOutput[1] != '':
