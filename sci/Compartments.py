@@ -8,11 +8,12 @@ from sklearn.metrics.pairwise import pairwise_distances
 
 
 class Compartments:
-    def __init__(self, name, GW_metadata):
+    def __init__(self, cfg, GW_metadata):
         self.GWtoKeep = []
+        self.cfg = cfg
         self.toKeep = []
         self.GW_meta_data = GW_metadata
-        self.name = name
+        self.name = cfg.name
 
     def process_LINE_embedding(self, embedding_file):
         features = []
@@ -27,12 +28,13 @@ class Compartments:
         self.GW_toKeep = np.array(nodes)
         return features
 
-    def predict_subcompartents(self, graphFile, order, samples, k=5):
+    def predict_subcompartents(self, graphFile):
         # run graph embedding
-        embedding_files = run_LINE(graphFile, samples, order)
+
+        embedding_files = run_LINE(graphFile, self.cfg.samples, self.cfg.order)
 
         # process embedding
-        if order != "both":
+        if self.cfg.order != "both":
             data = self.process_LINE_embedding(embedding_files)
         else:
             data_1 = self.process_LINE_embedding(embedding_files[0])
@@ -40,28 +42,33 @@ class Compartments:
             data = np.concatenate((data_1, data_2), axis=1)
             data = preprocessing.normalize(data, norm='l2')
 
-        # cluster embedding
-        data = preprocessing.scale(data)
-        model = KMeans(n_clusters=k)
-        model.fit(data)
-        GW_compartments = model.predict(data)
+        if self.cfg.exp_mode == "embed":
+            return data
+        else:
+            # cluster embedding
+            data = preprocessing.scale(data)
+            model = KMeans(n_clusters=self.cfg.clusters)
+            model.fit(data)
+            GW_compartments = model.predict(data)
 
-        # writing compartments to file
-        compartments = np.zeros(len(self.GW_meta_data))
-        compartments += -10
-        compartments[self.GW_toKeep] = GW_compartments
-        outfile = "%s_compartments.txt" % (self.name)
-        oF = open(outfile, "w")
-        oF.write("%s\t%s\t%s\t%s\n" % ("chr", "start", "end", "compartment"))
+            # writing compartments to file
+            compartments = np.zeros(len(self.GW_meta_data))
+            compartments += -10
+            compartments[self.GW_toKeep] = GW_compartments
+            outfile = "%s_compartments.txt" % (self.name)
+            oF = open(outfile, "w")
+            oF.write("%s\t%s\t%s\t%s\n" % ("chr", "start", "end", "compartment"))
 
-        for coord, compartment in zip(self.GW_meta_data, compartments):
-            if compartment == -10:
-                value = "NA"
-            else:
-                value = str(compartment)
-            oF.write("%s\t%d\t%d\t%s\n" %
-                     (coord[0], coord[1], coord[2], value))
-        oF.close()
+            for coord, compartment in zip(self.GW_meta_data, compartments):
+                if compartment == -10:
+                    value = "NA"
+                else:
+                    value = str(compartment)
+                oF.write("%s\t%d\t%d\t%s\n" %
+                         (coord[0], coord[1], coord[2], value))
+            oF.close()
+
+            return data
 
     def predict_ab_one_chrom(self, contact_matrix):
         # do some normalizations
