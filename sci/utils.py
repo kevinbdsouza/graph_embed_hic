@@ -50,11 +50,11 @@ def run_LINE(inFile, samples, mode):
             outFile = ("%s_order_%s_samples_%dM.embedding"
                        % (inFile.split(".")[0], mode, samples))
             command = (
-                        "/home/kevindsouza/Documents/projects/graph_embed_hic/LINE/line_new -train %s -order %s -samples %d -output %s"
-                        % (inFile, mode, samples, outFile))
+                    "/home/kevindsouza/Documents/projects/graph_embed_hic/LINE/line_new -train %s -order %s -samples %d -output %s"
+                    % (inFile, mode, samples, outFile))
             tOutput = _LaunchJob(command)
-            if tOutput[1] != '':
-                sys.exit(tOutput[1])
+            # if tOutput[1] != '':
+            #    sys.exit(tOutput[1])
             return outFile
         except Exception as e:
             print(e)
