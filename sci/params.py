@@ -14,7 +14,7 @@ class Params:
         self.label_file = None
         self.juicer_tools_path = "/data2/hic_lstm/softwares/juicer_tools.jar"
         self.dump_dir = self.hic_path + "graph"
-        self.genome_size_file = "/Users/kevindsouza/Documents/UBC/PhD/Research/nucleosome/graph_embed_hic/chromosome_sizes/hg19.chrom.sizes"
+        self.genome_size_file = "/home/kevindsouza/Documents/projects/graph_embed_hic/chromosome_sizes/hg19.chrom.sizes"
 
         self.chr = None
         self.mode = None

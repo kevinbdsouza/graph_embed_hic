@@ -7,7 +7,7 @@ from tqdm import tqdm
 class HicData:
     def __init__(self, res, name, chr):
         self.res = res
-        self.chr = chr 
+        self.chr = chr
         self.contact_matrices = {}
         self.dExpected_counts = {}
         self.toKeep = {}
