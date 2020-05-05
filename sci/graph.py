@@ -1,4 +1,3 @@
-import sys
 import argparse
 from sci.hic import HicData
 from sci.Compartments import Compartments
