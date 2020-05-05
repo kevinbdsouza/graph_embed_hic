@@ -21,7 +21,7 @@ class Params:
         self.chr = None
         self.mode = "cis"
         self.exp_mode = "embed"
-        self.exp = None
+        self.name = None
         self.res = 10000
         self.order = "1"
         self.alpha = 0.5
