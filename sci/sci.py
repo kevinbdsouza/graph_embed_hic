@@ -1,7 +1,7 @@
 import sys
 import argparse
-from .hic import HicData
-from .Compartments import Compartments
+from sci.hic import HicData
+from sci.Compartments import Compartments
 
 
 def run_sci():
@@ -81,7 +81,6 @@ def run_sci():
                           help="Adjaceny matrix file of the HiC graph",
                           default=None,
                           type=str)
-
 
     optional.add_argument("--alpha",
                           action="store",
