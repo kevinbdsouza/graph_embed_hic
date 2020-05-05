@@ -6,7 +6,6 @@ from scipy.stats import pearsonr
 from numpy import linalg as LA
 from sklearn.metrics.pairwise import pairwise_distances
 
-
 class Compartments:
     def __init__(self, cfg, GW_metadata):
         self.GWtoKeep = []
