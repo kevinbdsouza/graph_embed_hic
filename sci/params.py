@@ -17,6 +17,7 @@ class Params:
         self.chr_size_file = "/home/kevindsouza/Documents/projects/graph_embed_hic/chromosome_sizes/hg19.chrom.sizes"
         self.output_txt_path = None
         self.output_graph_path = None
+        self.embedding_file_path = None
 
         self.chr = None
         self.mode = "cis"

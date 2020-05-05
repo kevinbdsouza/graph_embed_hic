@@ -31,10 +31,12 @@ class Compartments:
         # run graph embedding
 
         embedding_files = run_LINE(graphFile, self.cfg.samples, self.cfg.order)
+        self.cfg.embedding_file_path = embedding_files
 
         # process embedding
         if self.cfg.order != "both":
             data = self.process_LINE_embedding(embedding_files)
+            data = np.array(data)
         else:
             data_1 = self.process_LINE_embedding(embedding_files[0])
             data_2 = self.process_LINE_embedding(embedding_files[1])
