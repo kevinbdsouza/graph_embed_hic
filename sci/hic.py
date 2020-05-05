@@ -25,7 +25,7 @@ class HicData:
         oF = open(chrsize_file)
         for line in oF.readlines():
             parts = line.strip().split()
-            self.dChrBins[parts[0]] = int(parts[1]) / self.res + 1
+            self.dChrBins[parts[0]] = int(int(parts[1]) / self.res + 1)
         return
 
     def initialize(self, chr_size_file):
