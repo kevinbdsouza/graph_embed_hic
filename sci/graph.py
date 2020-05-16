@@ -14,6 +14,7 @@ def run_sci(cfg):
 
     predictor = Compartments(cfg, GW_metadata)
     features = predictor.predict_subcompartents(hic_graph)
+    features = features[:, :cfg.embed_size]
 
     np.save(os.path.join(cfg.dump_dir, "embedding_" + str(cfg.chr)), features)
 

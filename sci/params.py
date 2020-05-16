@@ -28,3 +28,4 @@ class Params:
         self.alpha = 0.5
         self.samples = 25
         self.clusters = 5
+        self.embed_size = 16
