@@ -28,7 +28,7 @@ if __name__ == '__main__':
     cfg = params.Params()
     cfg.exp = "run1"
 
-    for chr in range(14, 23):
+    for chr in range(12, 23):
         cfg.chr = chr
         run_sci(cfg)
 
